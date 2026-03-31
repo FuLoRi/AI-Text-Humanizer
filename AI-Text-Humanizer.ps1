@@ -99,7 +99,7 @@ function Convert-AIText {
 
     # --- Clean up extra whitespace ---
     $t = $t -replace '  +', ' '
-    $t = $t -replace '(\r?\n){3,}', "`n`n"
+    $t = $t -replace '(\r?\n){3,}', "`r`n`r`n"
 
     # Build summary string
     $relevant = $counts.GetEnumerator() | Where-Object { $_.Value -gt 0 } |
