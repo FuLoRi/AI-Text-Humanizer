@@ -2,14 +2,10 @@
 
 A Windows PowerShell GUI tool that cleans AI-generated text by replacing or removing Unicode characters that humans rarely type, and optionally strips Markdown formatting and emoji. It also includes a heuristic detector that scores how likely a piece of text is to have been written by an AI.
 
-## Screenshot
-
-> Paste AI output into the top field, press **Humanize**, and get clean text in the bottom field ready to copy into an email or document.
-
 ## Features
 
-- **Humanize** — replaces or removes AI-telltale characters and outputs clean, human-looking text
 - **Detect AI** — scores the input text for AI likelihood based on Unicode signals, phrase patterns, and structure
+- **Humanize** — replaces or removes AI-telltale characters and outputs clean, human-looking text
 - **Remove Markdown** (optional) — strips headers, bold, italic, code blocks, links, and blockquotes while preserving the underlying text
 - **Remove Emoji** (optional) — strips emoji from BMP and supplementary Unicode planes
 - **Copy Output** — puts the humanized text straight onto the clipboard
@@ -115,4 +111,4 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 ## License
 
-MIT
+GPL-3.0
