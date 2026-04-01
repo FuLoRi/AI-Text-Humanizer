@@ -78,25 +78,27 @@ AI likelihood: HIGH (score 88/100) -- em dash x3 | curly quotes x8 | AI phrases:
 
 ## Installation
 
-1. Download `AI-Text-Humanizer.ps1`
-2. Right-click it and choose **Run with PowerShell**, or run from a terminal:
+### Quick Install (Recommended)
+
+1. Download the latest `.zip` from [Releases](https://github.com/FuLoRi/AI-Text-Humanizer/releases/latest)
+2. Extract the zip to any folder
+3. Double-click **Install.bat**
+4. Choose where to place shortcuts (Desktop and/or Start Menu)
+5. Launch from your new shortcut
+
+The installer copies files to `%LOCALAPPDATA%\AI-Text-Humanizer` and creates shortcuts that handle execution policy automatically. No console window appears when launching from the shortcut.
+
+### Manual Run (No Install)
+
+If you prefer not to install, download `AI-Text-Humanizer.ps1` and run it directly:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File "AI-Text-Humanizer.ps1"
 ```
 
-If your execution policy blocks unsigned scripts, you can unblock the file first:
+### Uninstall
 
-```powershell
-Unblock-File -Path "AI-Text-Humanizer.ps1"
-```
-
-Or run it directly from PowerShell without changing system policy:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\AI-Text-Humanizer.ps1
-```
+Run `Uninstall.ps1` from the install directory (`%LOCALAPPDATA%\AI-Text-Humanizer`), or simply delete that folder and remove any shortcuts you created.
 
 ## Usage
 

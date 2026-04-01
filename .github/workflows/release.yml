@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create release zip
+        run: |
+          mkdir release-staging
+          cp AI-Text-Humanizer.ps1 release-staging/
+          cp Install.ps1 release-staging/
+          cp Install.bat release-staging/
+          cp Uninstall.ps1 release-staging/
+          cp icon.ico release-staging/
+          cp README.md release-staging/
+          cp LICENSE release-staging/
+          cd release-staging
+          zip -r ../AI-Text-Humanizer-${{ github.ref_name }}.zip .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: AI-Text-Humanizer-${{ github.ref_name }}.zip
+          generate_release_notes: true
