@@ -13,13 +13,11 @@
 # Helpers
 # ============================================================
 
-function Get-PowerShellExe {
-    $pwsh = Get-Command pwsh.exe -ErrorAction SilentlyContinue
-    if ($pwsh) {
-        return $pwsh.Source
-    }
-    return "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
-}
+# Always use Windows PowerShell (not pwsh) for the shortcut target.
+# PowerShell 7 runs on .NET 6+ which defaults to per-monitor DPI awareness,
+# causing WinForms controls to render tiny on high-DPI displays.
+# Windows PowerShell 5.1 on .NET Framework scales WinForms correctly.
+$script:PSExePath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
 
 function New-Shortcut {
     param(
@@ -51,10 +49,7 @@ Write-Host "  AI Text Humanizer - Installer" -ForegroundColor Cyan
 Write-Host "  =============================" -ForegroundColor Cyan
 Write-Host ""
 
-# Detect PowerShell
-$psExe = Get-PowerShellExe
-$psName = if ($psExe -like '*pwsh*') { 'PowerShell 7 (pwsh)' } else { 'Windows PowerShell' }
-Write-Host "  PowerShell: $psName" -ForegroundColor Gray
+Write-Host "  Shortcuts will use: Windows PowerShell" -ForegroundColor Gray
 Write-Host ""
 
 # Install directory
@@ -158,7 +153,7 @@ $created = 0
 if ($desktop) {
     $lnk = Join-Path ([Environment]::GetFolderPath('Desktop')) 'AI Text Humanizer.lnk'
     try {
-        New-Shortcut -Path $lnk -TargetExe $psExe -Arguments $arguments -IconPath $iconPath -WorkingDirectory $installDir
+        New-Shortcut -Path $lnk -TargetExe $script:PSExePath -Arguments $arguments -IconPath $iconPath -WorkingDirectory $installDir
         Write-Host "  Shortcut created: Desktop" -ForegroundColor Green
         $created++
     } catch {
@@ -169,7 +164,7 @@ if ($desktop) {
 if ($startMenu) {
     $lnk = Join-Path ([Environment]::GetFolderPath('Programs')) 'AI Text Humanizer.lnk'
     try {
-        New-Shortcut -Path $lnk -TargetExe $psExe -Arguments $arguments -IconPath $iconPath -WorkingDirectory $installDir
+        New-Shortcut -Path $lnk -TargetExe $script:PSExePath -Arguments $arguments -IconPath $iconPath -WorkingDirectory $installDir
         Write-Host "  Shortcut created: Start Menu" -ForegroundColor Green
         $created++
     } catch {
@@ -180,7 +175,7 @@ if ($startMenu) {
 if ($customPath) {
     $lnk = Join-Path $customPath 'AI Text Humanizer.lnk'
     try {
-        New-Shortcut -Path $lnk -TargetExe $psExe -Arguments $arguments -IconPath $iconPath -WorkingDirectory $installDir
+        New-Shortcut -Path $lnk -TargetExe $script:PSExePath -Arguments $arguments -IconPath $iconPath -WorkingDirectory $installDir
         Write-Host "  Shortcut created: $customPath" -ForegroundColor Green
         $created++
     } catch {
