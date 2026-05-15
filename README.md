@@ -9,7 +9,7 @@ A Windows PowerShell GUI tool that cleans AI-generated text by replacing or remo
 - **Remove Markdown** (optional) — strips headers, bold, italic, code blocks, links, and blockquotes while preserving the underlying text
 - **Remove Emoji** (optional) — strips emoji from BMP and supplementary Unicode planes
 - **Copy Output** — puts the humanized text straight onto the clipboard
-- **Change summary** — the status bar reports exactly what was changed (e.g. `Em dashes (--): 5 | Curly double quotes: 8`)
+- **Change summary** — the status bar reports exactly what was changed (e.g. `Em dashes (-): 5 | Curly double quotes: 8`)
 
 ## What gets replaced
 
@@ -17,7 +17,7 @@ A Windows PowerShell GUI tool that cleans AI-generated text by replacing or remo
 
 | AI character | Replaced with |
 |---|---|
-| Em dash `—` (U+2014), horizontal bar `―` (U+2015) | `--` |
+| Em dash `—` (U+2014), horizontal bar `―` (U+2015) | `-` |
 | En dash `–` (U+2013), figure dash `‒` (U+2012), minus sign `−` (U+2212) | `-` |
 | Curly double quotes `"` `"` and guillemets `«` `»` | `"` |
 | Curly single quotes `'` `'` and angle quotes `‹` `›` | `'` |
