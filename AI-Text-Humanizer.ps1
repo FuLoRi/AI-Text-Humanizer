@@ -29,13 +29,13 @@ function Convert-AIText {
     # --- Dashes ---
     $emDashCount = ([regex]::Matches($t, '\u2014|\u2015')).Count
     $enDashCount = ([regex]::Matches($t, '\u2013|\u2012|\u2212')).Count
-    $t = $t -replace '\u2014', '--'
-    $t = $t -replace '\u2015', '--'
+    $t = $t -replace '\u2014', '-'
+    $t = $t -replace '\u2015', '-'
     $t = $t -replace '\u2013', '-'
     $t = $t -replace '\u2012', '-'
     $t = $t -replace '\u2212', '-'
-    if ($emDashCount -gt 0) { $counts['Em dashes (--)']  = $emDashCount }
-    if ($enDashCount -gt 0) { $counts['En dashes (-)']   = $enDashCount }
+    if ($emDashCount -gt 0) { $counts['Em dashes (-)']  = $emDashCount }
+    if ($enDashCount -gt 0) { $counts['En dashes (-)']  = $enDashCount }
 
     # --- Quotes ---
     $dqCount = ([regex]::Matches($t, '\u201C|\u201D|\u201E|\u201F|\u00AB|\u00BB')).Count
